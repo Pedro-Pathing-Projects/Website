@@ -8,26 +8,27 @@
 </head>
 <body>
 <div class="sidebar">
+    <div class="sidebar-resizer"></div>
     <div class="search-container">
         <input type="text" id="searchDocs" placeholder="Search docs...">
     </div>
     <ul class="menu">
         <li>
-            <h3>1. Localization</h3>
-            <ul>
+            <h3 class="dropdown">1. Localization</h3>
+            <ul class="submenu">
                 <li>Pick your localizer</li>
                 <li>Setting up your localizer</li>
             </ul>
         </li>
         <li>
-            <h3>2. Automatic Tuners</h3>
+            <h3 class="dropdown">2. Automatic Tuners</h3>
         </li>
         <li>
-            <h3>3. PID Tuners</h3>
+            <h3 class="dropdown">3. PID Tuners</h3>
         </li>
         <li>
-            <h3>4. Example Code</h3>
-            <ul>
+            <h3 class="dropdown">4. Example Code</h3>
+            <ul class="submenu">
                 <li>Example Auto</li>
                 <li>Example Teleop</li>
             </ul>
@@ -35,11 +36,15 @@
     </ul>
 </div>
 <div class="content">
-    <h1>Welcome to Pedro Pathing Documentation</h1>
-    <p>Select a topic from the sidebar to get started.</p>
+    <h1>Pedro Pathing Documentation</h1>
+    <p>
+        Welcome to the comprehensive guide for Pedro Pathing. This documentation provides detailed information
+        about setup, localization methods, tuners, and example code. Use the sidebar to navigate through the topics.
+    </p>
 </div>
 
 <script>
+    // Search functionality
     const searchInput = document.getElementById('searchDocs');
     const menuItems = document.querySelectorAll('.menu li h3, .menu li ul li');
 
@@ -47,12 +52,40 @@
         const filter = searchInput.value.toLowerCase();
         menuItems.forEach(item => {
             const text = item.textContent.toLowerCase();
-            if (text.includes(filter)) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
+            item.style.display = text.includes(filter) ? '' : 'none';
         });
+    });
+
+    // Dropdown functionality
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function () {
+            const submenu = this.nextElementSibling;
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+
+    // Sidebar drag functionality
+    const sidebar = document.querySelector('.sidebar');
+    const resizer = document.querySelector('.sidebar-resizer');
+    let isResizing = false;
+
+    resizer.addEventListener('mousedown', function (e) {
+        isResizing = true;
+        document.body.style.cursor = 'ew-resize';
+    });
+
+    document.addEventListener('mousemove', function (e) {
+        if (!isResizing) return;
+        const newWidth = e.clientX;
+        if (newWidth > 200 && newWidth < 500) {
+            sidebar.style.width = `${newWidth}px`;
+        }
+    });
+
+    document.addEventListener('mouseup', function () {
+        isResizing = false;
+        document.body.style.cursor = 'default';
     });
 </script>
 </body>

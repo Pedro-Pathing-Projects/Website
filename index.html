@@ -14,15 +14,16 @@
 </div>
 
 <canvas id="backgroundCanvas"></canvas>
+<canvas id="colorCanvas"></canvas>
 
 <script>
-    // Background particle effect
-    const canvas = document.getElementById("backgroundCanvas");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Particle Canvas
+    const particleCanvas = document.getElementById("backgroundCanvas");
+    const particleCtx = particleCanvas.getContext("2d");
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
 
-    let particles = [];
+    const particles = [];
 
     class Particle {
         constructor(x, y) {
@@ -38,11 +39,11 @@
             if (this.size > 0.2) this.size -= 0.1;
         }
         draw() {
-            ctx.fillStyle = 'rgba(238, 0, 255, 0.7)';
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
+            particleCtx.fillStyle = 'rgba(238, 0, 255, 0.7)';
+            particleCtx.beginPath();
+            particleCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            particleCtx.closePath();
+            particleCtx.fill();
         }
     }
 
@@ -55,13 +56,13 @@
                 const dy = particles[i].y - particles[j].y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < 100) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = 'rgba(238, 0, 255, 0.3)';
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                    ctx.closePath();
+                    particleCtx.beginPath();
+                    particleCtx.strokeStyle = 'rgba(238, 0, 255, 0.3)';
+                    particleCtx.lineWidth = 0.5;
+                    particleCtx.moveTo(particles[i].x, particles[i].y);
+                    particleCtx.lineTo(particles[j].x, particles[j].y);
+                    particleCtx.stroke();
+                    particleCtx.closePath();
                 }
             }
             if (particles[i].size <= 0.2) {
@@ -71,23 +72,49 @@
         }
     }
 
-    canvas.addEventListener('mousemove', function (event) {
+    particleCanvas.addEventListener('mousemove', function (event) {
         for (let i = 0; i < 5; i++) {
             particles.push(new Particle(event.x, event.y));
         }
     });
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function animateParticles() {
+        particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
         handleParticles();
-        requestAnimationFrame(animate);
+        requestAnimationFrame(animateParticles);
     }
 
-    animate();
+    animateParticles();
+
+    // Dynamic Background Canvas
+    const colorCanvas = document.getElementById("colorCanvas");
+    const colorCtx = colorCanvas.getContext("2d");
+    colorCanvas.width = window.innerWidth;
+    colorCanvas.height = window.innerHeight;
+
+    function drawGradient(event) {
+        const x = event.clientX / window.innerWidth;
+        const y = event.clientY / window.innerHeight;
+
+        const gradient = colorCtx.createRadialGradient(
+            event.clientX, event.clientY, 50,
+            window.innerWidth / 2, window.innerHeight / 2, window.innerWidth
+        );
+
+        gradient.addColorStop(0, `rgba(238, 0, 255, ${1 - y})`);
+        gradient.addColorStop(1, `rgba(0, 0, 0, ${1 - x})`);
+
+        colorCtx.fillStyle = gradient;
+        colorCtx.fillRect(0, 0, colorCanvas.width, colorCanvas.height);
+    }
+
+    colorCanvas.addEventListener('mousemove', drawGradient);
 
     window.addEventListener('resize', function () {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        particleCanvas.width = window.innerWidth;
+        particleCanvas.height = window.innerHeight;
+        colorCanvas.width = window.innerWidth;
+        colorCanvas.height = window.innerHeight;
     });
 </script>
 </body>

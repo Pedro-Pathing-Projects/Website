@@ -17,6 +17,7 @@ body {
     text-align: center;
     background: black;
     position: relative;
+    z-index: 2; /* Ensure it's above the background canvas */
 }
 
 /* Text Styling */
@@ -54,14 +55,14 @@ body {
     box-shadow: 0 0 20px rgba(238, 0, 255, 0.8), 0 0 30px rgba(238, 0, 255, 0.6);
 }
 
-/* Background Canvas */
+/* Background Canvases */
 canvas {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
 }
 
 /* Gradient Animation for Button */

@@ -61,21 +61,48 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    text-shadow: 0 0 5px rgba(238, 0, 255, 0.7);
+    text-shadow: none;
+}
+
+.dropdown-icon {
+    font-size: 0.8rem;
+    margin-left: 5px;
 }
 
 .submenu {
-    margin: 0 0 15px 15px;
-    padding: 0;
+    margin: 10px 0 10px 15px;
     list-style: none;
-    display: none; /* Initially hidden */
+    display: none;
 }
 
-.submenu li {
-    margin: 10px 0;
+/* Link Styles */
+.submenu a {
     font-size: 1rem;
-    cursor: pointer;
-    text-shadow: 0 0 3px rgba(238, 0, 255, 0.5);
+    color: white;
+    text-decoration: none;
+    padding: 5px 0;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.submenu a:hover {
+    color: #e056fd;
+}
+
+.branch {
+    position: relative;
+}
+
+.branch::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    height: 2px;
+    width: 10px;
+    background: white;
+    transform: translateY(-50%);
 }
 
 /* Content Area Styles */
@@ -87,10 +114,8 @@ body {
 
 .content h1 {
     font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(238, 0, 255, 0.7);
 }
 
 .content p {
     font-size: 1.2rem;
-    text-shadow: 0 0 5px rgba(238, 0, 255, 0.5);
 }

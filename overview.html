@@ -16,21 +16,37 @@
         <li>
             <h3 class="dropdown">1. Localization <span class="dropdown-icon">▼</span></h3>
             <ul class="submenu">
-                <li>Pick your localizer</li>
-                <li>Setting up your localizer</li>
+                <li class="branch"><a href="pick-your-localizer.html">Pick your localizer</a></li>
+                <li class="branch"><a href="setting-up-your-localizer.html">Setting up your localizer</a></li>
+                <li class="branch"><a href="test-your-localizer.html">Test your localizer</a></li>
             </ul>
         </li>
         <li>
             <h3 class="dropdown">2. Automatic Tuners <span class="dropdown-icon">▼</span></h3>
+            <ul class="submenu">
+                <li class="branch"><a href="small-intro-find-weight.html">Small intro & Find weight</a></li>
+                <li class="branch"><a href="velocity-tuners.html">Velocity Tuners</a></li>
+                <li class="branch"><a href="zero-power-tuners.html">Zero Power Tuners</a></li>
+            </ul>
         </li>
         <li>
             <h3 class="dropdown">3. PID Tuners <span class="dropdown-icon">▼</span></h3>
+            <ul class="submenu">
+                <li class="branch"><a href="overview-pick-tuners.html">Overview/Intro & Pick Amount of Tuners</a></li>
+                <li class="branch"><a href="translational-pid.html">Translational PID</a></li>
+                <li class="branch"><a href="heading-pid.html">Heading PID</a></li>
+                <li class="branch"><a href="drive-pid.html">Drive PID</a></li>
+                <li class="branch"><a href="zero-power-multiplier.html">Zero Power Multiplier</a></li>
+                <li class="branch"><a href="centripetal-scaling.html">Centripetal Scaling</a></li>
+                <li class="branch"><a href="test-your-pids.html">Test your PIDs</a></li>
+                <li class="branch"><a href="what-to-do-next.html">What to do next?</a></li>
+            </ul>
         </li>
         <li>
             <h3 class="dropdown">4. Example Code <span class="dropdown-icon">▼</span></h3>
             <ul class="submenu">
-                <li>Example Auto</li>
-                <li>Example Teleop</li>
+                <li class="branch"><a href="example-auto.html">Example Auto</a></li>
+                <li class="branch"><a href="example-teleop.html">Example Teleop</a></li>
             </ul>
         </li>
     </ul>
@@ -38,30 +54,19 @@
 <div class="content">
     <h1>Pedro Pathing Documentation</h1>
     <p>
-        Pedro Pathing is a Reactive Vector Follower designed by FTC Team 10158 Scott's Bots to improve autonomous pathing efficiency.
-        By leveraging advanced Bezier curve generation, it achieves smoother, faster, and more optimal paths compared to traditional systems like RoadRunner.
+        Welcome to the comprehensive guide for Pedro Pathing. This documentation provides detailed information
+        about setup, localization methods, tuners, and example implementation code for both autonomous and teleop modes.
     </p>
     <p>
-        This documentation provides a comprehensive guide to help you set up Pedro Pathing, including localization methods, automatic tuners, PID tuners, and example implementation code for both autonomous and teleop modes.
+        Pedro Pathing is a Reactive Vector Follower designed to improve autonomous navigation. It uses Bezier curve generation
+        to ensure smoother, faster, and more efficient pathing compared to traditional systems like RoadRunner.
     </p>
     <p>
-        Whether you're a novice or a seasoned robotics team, this guide ensures you can effectively integrate Pedro Pathing into your robotics projects and fully utilize its capabilities.
+        Navigate through the sidebar to access detailed pages on localization methods, automatic tuners, PID tuners, and code examples.
     </p>
 </div>
 
 <script>
-    // Search functionality
-    const searchInput = document.getElementById('searchDocs');
-    const menuItems = document.querySelectorAll('.menu li h3, .menu li ul li');
-
-    searchInput.addEventListener('input', function () {
-        const filter = searchInput.value.toLowerCase();
-        menuItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(filter) ? '' : 'none';
-        });
-    });
-
     // Dropdown functionality
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
@@ -72,12 +77,12 @@
         });
     });
 
-    // Sidebar drag functionality
+    // Sidebar resizing functionality
     const sidebar = document.querySelector('.sidebar');
     const resizer = document.querySelector('.sidebar-resizer');
     let isResizing = false;
 
-    resizer.addEventListener('mousedown', function (e) {
+    resizer.addEventListener('mousedown', function () {
         isResizing = true;
         document.body.style.cursor = 'ew-resize';
     });
@@ -93,6 +98,18 @@
     document.addEventListener('mouseup', function () {
         isResizing = false;
         document.body.style.cursor = 'default';
+    });
+
+    // Search functionality
+    const searchInput = document.getElementById('searchDocs');
+    const menuItems = document.querySelectorAll('.menu h3, .menu ul li');
+
+    searchInput.addEventListener('input', function () {
+        const filter = searchInput.value.toLowerCase();
+        menuItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(filter) ? '' : 'none';
+        });
     });
 </script>
 </body>

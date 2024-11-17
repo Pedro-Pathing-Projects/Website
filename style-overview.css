@@ -52,6 +52,7 @@ body {
 .menu {
     list-style: none;
     padding: 0;
+    position: relative;
 }
 
 .menu h3 {
@@ -62,17 +63,32 @@ body {
     justify-content: space-between;
     align-items: center;
     text-shadow: none;
+    position: relative;
 }
 
-.dropdown-icon {
-    font-size: 0.8rem;
-    margin-left: 5px;
-}
-
+/* Submenu with Horizontal Lines */
 .submenu {
-    margin: 10px 0 10px 15px;
+    margin: 0;
     list-style: none;
     display: none;
+    position: relative;
+    padding-left: 10px; /* Shift subpages closer to the main page */
+}
+
+.submenu li {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+/* Horizontal branch line connecting subpages */
+.submenu li::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -15px; /* Shifts horizontal line closer to subpage */
+    width: 10px; /* Reduced line size */
+    height: 2px;
+    background: white;
 }
 
 /* Link Styles */
@@ -80,29 +96,12 @@ body {
     font-size: 1rem;
     color: white;
     text-decoration: none;
-    padding: 5px 0;
+    padding-left: 5px; /* Keeps space between line and subpage text */
     transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
 }
 
 .submenu a:hover {
     color: #e056fd;
-}
-
-.branch {
-    position: relative;
-}
-
-.branch::before {
-    content: '';
-    position: absolute;
-    left: -10px;
-    top: 50%;
-    height: 2px;
-    width: 10px;
-    background: white;
-    transform: translateY(-50%);
 }
 
 /* Content Area Styles */

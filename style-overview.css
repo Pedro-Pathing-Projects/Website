@@ -3,9 +3,10 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    overflow: hidden;
-    color: white;
     display: flex;
+    background: linear-gradient(45deg, #1e1e2f, #000);
+    color: white;
+    overflow: hidden;
 }
 
 /* Sidebar Styles */
@@ -57,6 +58,9 @@ body {
     margin: 15px 0;
     font-size: 1.2rem;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     text-shadow: 0 0 5px rgba(238, 0, 255, 0.7);
 }
 
@@ -78,8 +82,6 @@ body {
 .content {
     flex: 1;
     padding: 20px;
-    background: linear-gradient(45deg, #1e1e2f, #000);
-    color: white;
     overflow-y: auto;
 }
 
@@ -91,11 +93,4 @@ body {
 .content p {
     font-size: 1.2rem;
     text-shadow: 0 0 5px rgba(238, 0, 255, 0.5);
-}
-
-/* Responsive Behavior */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 250px;
-    }
 }

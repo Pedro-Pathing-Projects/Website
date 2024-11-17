@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedro Pathing - Overview</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-overview.css">
 </head>
 <body>
 <div class="sidebar">
@@ -14,20 +14,20 @@
     </div>
     <ul class="menu">
         <li>
-            <h3 class="dropdown">1. Localization</h3>
+            <h3 class="dropdown">1. Localization <span class="dropdown-icon">▼</span></h3>
             <ul class="submenu">
                 <li>Pick your localizer</li>
                 <li>Setting up your localizer</li>
             </ul>
         </li>
         <li>
-            <h3 class="dropdown">2. Automatic Tuners</h3>
+            <h3 class="dropdown">2. Automatic Tuners <span class="dropdown-icon">▼</span></h3>
         </li>
         <li>
-            <h3 class="dropdown">3. PID Tuners</h3>
+            <h3 class="dropdown">3. PID Tuners <span class="dropdown-icon">▼</span></h3>
         </li>
         <li>
-            <h3 class="dropdown">4. Example Code</h3>
+            <h3 class="dropdown">4. Example Code <span class="dropdown-icon">▼</span></h3>
             <ul class="submenu">
                 <li>Example Auto</li>
                 <li>Example Teleop</li>
@@ -38,8 +38,14 @@
 <div class="content">
     <h1>Pedro Pathing Documentation</h1>
     <p>
-        Welcome to the comprehensive guide for Pedro Pathing. This documentation provides detailed information
-        about setup, localization methods, tuners, and example code. Use the sidebar to navigate through the topics.
+        Pedro Pathing is a Reactive Vector Follower designed by FTC Team 10158 Scott's Bots to improve autonomous pathing efficiency.
+        By leveraging advanced Bezier curve generation, it achieves smoother, faster, and more optimal paths compared to traditional systems like RoadRunner.
+    </p>
+    <p>
+        This documentation provides a comprehensive guide to help you set up Pedro Pathing, including localization methods, automatic tuners, PID tuners, and example implementation code for both autonomous and teleop modes.
+    </p>
+    <p>
+        Whether you're a novice or a seasoned robotics team, this guide ensures you can effectively integrate Pedro Pathing into your robotics projects and fully utilize its capabilities.
     </p>
 </div>
 
@@ -62,6 +68,7 @@
         dropdown.addEventListener('click', function () {
             const submenu = this.nextElementSibling;
             submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            this.querySelector('.dropdown-icon').textContent = submenu.style.display === 'block' ? '▲' : '▼';
         });
     });
 

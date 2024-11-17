@@ -100,16 +100,39 @@
         document.body.style.cursor = 'default';
     });
 
-    // Search functionality
+    // Enhanced Search Functionality
     const searchInput = document.getElementById('searchDocs');
-    const menuItems = document.querySelectorAll('.menu h3, .menu ul li');
+    const menuItems = document.querySelectorAll('.menu h3, .submenu li');
 
     searchInput.addEventListener('input', function () {
         const filter = searchInput.value.toLowerCase();
+        let hasResults = false;
+
         menuItems.forEach(item => {
             const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(filter) ? '' : 'none';
+            const parentMenu = item.closest('.submenu');
+
+            if (text.includes(filter)) {
+                item.style.display = ''; // Show the item
+                hasResults = true;
+
+                // Automatically show the parent menu if hidden
+                if (parentMenu && parentMenu.style.display === 'none') {
+                    parentMenu.style.display = 'block';
+                    const parentDropdown = parentMenu.previousElementSibling;
+                    if (parentDropdown && parentDropdown.querySelector('.dropdown-icon')) {
+                        parentDropdown.querySelector('.dropdown-icon').textContent = '▲';
+                    }
+                }
+            } else {
+                item.style.display = 'none'; // Hide the item
+            }
         });
+
+        // Optional: Handle no results case
+        if (!hasResults) {
+            console.log('No results found');
+        }
     });
 </script>
 </body>

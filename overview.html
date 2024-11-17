@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Pathing - Overview</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar">
+    <div class="search-container">
+        <input type="text" id="searchDocs" placeholder="Search docs...">
+    </div>
+    <ul class="menu">
+        <li>
+            <h3>1. Localization</h3>
+            <ul>
+                <li>Pick your localizer</li>
+                <li>Setting up your localizer</li>
+            </ul>
+        </li>
+        <li>
+            <h3>2. Automatic Tuners</h3>
+        </li>
+        <li>
+            <h3>3. PID Tuners</h3>
+        </li>
+        <li>
+            <h3>4. Example Code</h3>
+            <ul>
+                <li>Example Auto</li>
+                <li>Example Teleop</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="content">
+    <h1>Welcome to Pedro Pathing Documentation</h1>
+    <p>Select a topic from the sidebar to get started.</p>
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchDocs');
+    const menuItems = document.querySelectorAll('.menu li h3, .menu li ul li');
+
+    searchInput.addEventListener('input', function () {
+        const filter = searchInput.value.toLowerCase();
+        menuItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+</body>
+</html>
